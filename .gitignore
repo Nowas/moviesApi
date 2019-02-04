@@ -1,0 +1,10 @@
+pm-debug.log
+.tern-port
+.idea
+.project
+.settings
+api.log
+test.log
+node_modules
+built
+.DS_Store

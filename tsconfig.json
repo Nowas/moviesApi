@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+		"outDir": "./built",
+		"allowJs": true,
+		"pretty": true,
+		"target": "es6",
+		"module": "commonjs",
+		"sourceMap": true,
+		"rootDir": "src",
+		"baseUrl": ".",
+    },
+    "include": [
+        "./src/**/*.ts"
+	],
+	"exclude": [
+        "node_modules"
+    ]
+}
