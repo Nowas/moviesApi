@@ -5,8 +5,4 @@ export class MovieModel {
     constructor(title:string) { 
        this.title = title 
     }  
-
-    display_name():void { 
-       console.log("Movie title is:   "+this.title) 
-    } 
  }

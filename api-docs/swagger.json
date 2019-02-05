@@ -261,9 +261,8 @@
 			"properties": {
 				"header": {
 					"type": "string",
-					"uniqueItems": true,
-					"description": "Header of the comment",
-					"example":"StarTrek"
+					"example":"Best movie ever",
+					"description": "Comment header"
 				},
 				"details": {
 					"type": "string",

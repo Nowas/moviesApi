@@ -1,12 +1,10 @@
 export class CommentModel {  
 	header:string
 	details?:string 
-	movieId: number
 	id?:number
 	
      
-    constructor(movieId:number, header:string, details:string) { 
-		this.movieId = movieId 
+    constructor(header:string, details:string) { 
 		this.header = header 
 		this.details = details 
     }  
