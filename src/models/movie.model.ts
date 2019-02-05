@@ -1,8 +1,16 @@
 export class MovieModel {  
-      title:string; 
-      id?:number
+   year?:string
+   actors?: string
+   director?:string
+   awards?:string
+   title:string;
+   id?:number
      
-    constructor(title:string) { 
-       this.title = title 
-    }  
+    constructor(omdbapiResp:any) { 
+      this.title = omdbapiResp.Title 
+      this.year = omdbapiResp.Year 
+      this.director = omdbapiResp.Director 
+      this.awards = omdbapiResp.Awards 
+      this.title = omdbapiResp.Title 
+   }  
  }

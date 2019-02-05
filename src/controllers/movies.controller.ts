@@ -37,11 +37,16 @@ module.exports = function (db: Repository) {
 		}
 	}
 
-	async function add(req: any, res: Response) {
+	async function add(req: Request, res: Response) {
 		try {
-			var addResult = await movieService.addMovieToCollection(new MovieModel(req.body.title))
+			var addResult = await movieService.addMovieToCollection(req.body.title)
 			res.status(200).send(addResult)
 		} catch (error) {
+			if( error.message == 'Movie already in DB')
+				return res.status(409).send(error.message)
+
+			if( error.message == 'Movie not found')
+				return res.status(404).send(error.message)
 			return res.status(500).send()
 
 		}

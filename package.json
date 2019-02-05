@@ -21,7 +21,9 @@
     "express": "^4.16.4",
     "gulp": "^4.0.0",
     "lokijs": "^1.5.6",
+    "node-fetch": "^2.3.0",
     "nodemon": "^1.18.9",
+    "request": "^2.88.0",
     "swagger-tools": "^0.10.4",
     "typescript": "^3.3.1"
   }

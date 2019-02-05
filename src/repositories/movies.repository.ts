@@ -16,8 +16,11 @@ export class MovieRepository{
     get(id?:number):MovieModel[]{
         if(!id)
            return this.moviesCollection.find()
-        return this.moviesCollection.find({$loki:id})
+        return this.moviesCollection.find({id:id})
     }
 
+    find(title:string):MovieModel[]{
+        return this.moviesCollection.find({title:title})
+    }
 
 }

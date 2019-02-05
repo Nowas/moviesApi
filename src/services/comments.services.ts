@@ -33,11 +33,10 @@ export class CommentsService {
     if (movie.length != 1)
       throw new Error('Movie not unique')
     let addResult = await this.db.comments().add(movieId, commentData)
-    return {
-      header: addResult.header,
-      details: addResult.details,
-      id: addResult['$loki']
-    }
 
+    addResult.id = addResult['$loki']
+    delete addResult['$loki']
+    delete addResult['meta']
+    return addResult
   }
 }

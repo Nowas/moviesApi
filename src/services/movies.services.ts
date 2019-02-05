@@ -1,5 +1,8 @@
-import { Repository } from "src/repositories";
-import { MovieModel } from "src/models/movie.model";
+import { Repository } from "..//repositories";
+import { MovieModel } from "../models/movie.model";
+import { resolve } from "dns";
+var querystring = require('querystring');
+var fetch = require("node-fetch");
 
 export class MoviesService {
   protected db: Repository
@@ -10,19 +13,27 @@ export class MoviesService {
 
   async getMovies(id?: number): Promise<MovieModel[]> {
     let getResult = await this.db.movies().get(id)
-    return getResult.map(el => {
-      return {
-        title: el.title,
-        id: Number(el['$loki'])
-      }
-    })
+    return getResult
   }
 
-  async addMovieToCollection(movieData: MovieModel): Promise<MovieModel> {
-    let addResult = await this.db.movies().add(movieData)
-    return {
-      title: addResult.title,
-      id: Number(addResult['$loki'])
-    }
+  async addMovieToCollection(title: string): Promise<MovieModel> {
+    let dbResults = await this.db.movies().find(title)
+
+    if( dbResults.length > 0)
+      throw new Error('Movie already in DB')
+
+    const response = await fetch(`http://www.omdbapi.com/?t=${querystring.escape(title)}&apikey=${process.env.PN_MOVIE_DB_KEY}`);
+    const json = await response.json();
+    if( json.Error == 'Movie not found!')
+      throw new Error('Movie not found')
+    else if ( json.Error)
+      throw new Error('Smth went wrong')
+
+
+    let addResult = await this.db.movies().add(new MovieModel(json))
+    addResult.id = addResult['$loki']
+    delete addResult['$loki']
+    delete addResult['meta']
+    return addResult
   }
 }
