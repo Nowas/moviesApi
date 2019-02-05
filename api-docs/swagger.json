@@ -195,7 +195,7 @@
 					"type": "string",
 					"uniqueItems": true,
 					"description": "Title of the movie",
-					"example":"StarTrek"
+					"example":"Star Trek"
 				}
 			}
 		},
@@ -214,7 +214,7 @@
 					"type": "string",
 					"uniqueItems": true,
 					"description": "Title of the movie",
-					"example":"StarTrek"
+					"example":"Star Trek"
 				}
 			}
 		},
@@ -243,7 +243,7 @@
 				"details": {
 					"type": "string",
 					"minLength":1,
-					"example":"StarTrek is the best movie ever",
+					"example":"Star Trek is the best movie ever",
 					"description": "Comment details"
 				}
 			}
