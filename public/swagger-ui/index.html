@@ -39,8 +39,7 @@
     window.onload = function() {
       // Begin Swagger UI call region
       const ui = SwaggerUIBundle({
-        url: "https://nowas-movie-api.herokuapp.com/console/api-docs",        
-        //url: "http://localhost:3000/console/api-docs",
+        url: window.location.protocol + "//" + window.location.hostname + (window.location.port && ":" + window.location.port) + "/console/api-docs",
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
