@@ -1,4 +1,5 @@
 import app from './app'
+require('dotenv').load()
 
 const port = process.env.PORT || 3000
 

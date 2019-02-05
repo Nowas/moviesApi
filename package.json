@@ -12,7 +12,6 @@
     "build-ts": "tsc",
     "postinstall": "npm run build-ts",
     "start": "node ./built/server.js"
-
   },
   "keywords": [
     "Movies",
@@ -26,6 +25,7 @@
     "@types/lokijs": "^1.5.2",
     "@types/node": "^10.12.21",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "gulp": "^4.0.0",
     "lokijs": "^1.5.6",
