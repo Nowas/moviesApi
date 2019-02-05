@@ -215,6 +215,24 @@
 					"uniqueItems": true,
 					"description": "Title of the movie",
 					"example":"Star Trek"
+				},
+				"year": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Year of the movie",
+					"example":"2009"
+				},
+				"director": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Director of the movie",
+					"example":"J.J. Abrams"
+				},
+				"awards": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Movie awards",
+					"example":"Won 1 Oscar. Another 23 wins & 92 nominations."
 				}
 			}
 		},

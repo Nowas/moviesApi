@@ -1,7 +1,7 @@
 # Steps to run movieApi locally:
 
 1. git clone the repo
-1. cd movies
+1. cd moviesApi/
 1. create a .env file with given data:
     ```
     MOVIE_API_KEY=XXXXXXXX
