@@ -22,7 +22,7 @@ export class MoviesService {
     if( dbResults.length > 0)
       throw new Error('Movie already in DB')
 
-    const response = await fetch(`http://www.omdbapi.com/?t=${querystring.escape(title)}&apikey=${process.env.PN_MOVIE_DB_KEY}`);
+    const response = await fetch(`http://www.omdbapi.com/?t=${querystring.escape(title)}&apikey=${process.env.MOVIE_API_KEY}`);
     const json = await response.json();
     if( json.Error == 'Movie not found!')
       throw new Error('Movie not found')
