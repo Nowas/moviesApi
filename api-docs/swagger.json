@@ -1,0 +1,277 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "MovieApi Application",
+		"description": "MovieApi Application",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/movies": {
+			"get": {
+				"x-swagger-router-controller": "movies",
+				"operationId": "get",
+				"tags": [
+					"Movies"
+				],
+				"summary": "Get all movies in system",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Movies"
+						}
+					}
+				}
+			},
+			"post": {
+				"x-swagger-router-controller": "movies",
+				"operationId": "add",
+				"tags": [
+					"Movies"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "Movie data",
+						"required": true,
+						"description": "Movie data to be added",
+						"schema": {
+							"$ref": "#/definitions/PostMovie"
+						}
+					}
+				],
+				"summary": "Add new Movie ",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Movies"
+						}
+					}
+				}
+			}
+		},
+		"/movies/{id}": {
+			"get": {
+				"x-swagger-router-controller": "movies",
+				"operationId": "get",
+				"tags": [
+					"Movies"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "number",
+						"required": true,
+						"description": "ID of the movie"
+					}
+				],
+				"summary": "Get movies by id",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Movie"
+						}
+					},
+					"404": {
+						"description": "Movie not found"
+					}
+				}
+			}
+		},
+		"/movies/{id}/comments": {
+			"get": {
+				"summary": "Get movies comments",
+				"x-swagger-router-controller": "comments",
+				"operationId": "get",
+				"tags": [
+					"Comments"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "number",
+						"required": true,
+						"description": "ID of the movie"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Comments"
+						}
+					},
+					"404": {
+						"description": "Movie not found"
+					}
+				}
+			},
+			"post": {
+				"summary": "Add new Comment to the movie ",
+				"x-swagger-router-controller": "comments",
+				"operationId": "add",
+				"tags": [
+					"Comments"
+				],
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "number",
+						"required": true,
+						"description": "ID of the movie"
+					},
+					{
+						"in": "body",
+						"name": "Movie data",
+						"required": true,
+						"description": "Movie data to be added",
+						"schema": {
+							"$ref": "#/definitions/PostComment"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Comment"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"PostMovie": {
+			"required": [
+				"title"
+			],
+			"properties": {
+				"title": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Title of the movie",
+					"example":"StarTrek"
+				}
+			}
+		},
+		"Movie": {
+			"required": [
+				"title"
+			],
+			"properties": {
+				"id": {
+					"type": "number",
+					"uniqueItems": true,
+					"description": "Movie ID",
+					"example":1
+				},
+				"title": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Title of the movie",
+					"example":"StarTrek"
+				}
+			}
+		},
+		"Movies": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Movie"
+			}
+		},
+		"Comment": {
+			"required": [
+				"header"
+			],
+			"properties": {
+				"id": {
+					"type": "number",
+					"uniqueItems": true,
+					"example":1
+				},
+				"header": {
+					"type": "string",
+					"minLength":1,
+					"example":"Best movie ever",
+					"description": "Comment header"
+				},
+				"details": {
+					"type": "string",
+					"minLength":1,
+					"example":"StarTrek is the best movie ever",
+					"description": "Comment details"
+				}
+			}
+		},
+		"Comments": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Comment"
+			}
+		},
+		"PostComment": {
+			"required": [
+				"header"
+			],
+			"properties": {
+				"header": {
+					"type": "string",
+					"uniqueItems": true,
+					"description": "Header of the comment",
+					"example":"StarTrek"
+				},
+				"details": {
+					"type": "string",
+					"description": "Comment details",
+					"example":"Best movie I've ever watched",
+					"minLength":1
+				}
+			}
+		}
+	}
+}
