@@ -13,7 +13,7 @@ module.exports = function (db: Repository) {
 			let comments = await commentService.getComments(movieId)
 			return res.status(200).send(comments)
 		} catch (error) {
-			if (error.message == 'Movie Not found')
+			if (error.message == 'Movie not found')
 				return res.status(404).send(error.message)
 
 			return res.status(500).send()
@@ -27,7 +27,7 @@ module.exports = function (db: Repository) {
 			var addResult = await commentService.addCommentToMovie(movieId, commentData)
 			res.status(200).send(addResult)
 		} catch (error) {
-			if (error.message == 'Movie Not found')
+			if (error.message == 'Movie not found')
 				return res.status(404).send(error.message)
 
 			if (error.message == 'Movie not unique')

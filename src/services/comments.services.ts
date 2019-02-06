@@ -14,7 +14,7 @@ export class CommentsService {
   async getComments(movieId: number): Promise<CommentModel[]> {
     let movie = await this.movieService.getMovies(movieId)
     if (movie.length == 0)
-      throw new Error('Movie Not found')
+      throw new Error('Movie not found')
     let getResult = await this.db.comments().get(movieId)
     return getResult.map(el => {
       return {
@@ -29,7 +29,7 @@ export class CommentsService {
   async addCommentToMovie(movieId: number, commentData: CommentModel): Promise<CommentModel> {
     let movie = await this.movieService.getMovies(movieId)
     if (movie.length == 0)
-      throw new Error('Movie Not found')
+      throw new Error('Movie not found')
     if (movie.length != 1)
       throw new Error('Movie not unique')
     let addResult = await this.db.comments().add(movieId, commentData)
