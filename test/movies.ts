@@ -18,7 +18,7 @@ describe('MovieService', () => {
         expect(movies.length).to.equal(0)
     })
     
-    it('Expect to throw erro on movie not found', async () => {
+    it('Expect to throw error on movie not found', async () => {
         try{
             await movieService.addMovieToCollection('Star Trek - bad title with typo')
             expect.fail(null, null, 'Movie was found')
@@ -35,7 +35,7 @@ describe('MovieService', () => {
         expect(movie.awards).to.equal("Won 1 Oscar. Another 23 wins & 92 nominations.")
     })
 
-    it('Reject duplicated movie to throw erro on movie not found', async () => {
+    it('Reject duplicated movie to throw error on movie not found', async () => {
         try{
             await movieService.addMovieToCollection('Star Trek')
             expect.fail(null, null, 'Movie was added')

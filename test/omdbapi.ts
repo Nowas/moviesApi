@@ -14,7 +14,7 @@ describe('OmdbapiService', () => {
         expect(movieModel.awards).to.equal("Won 1 Oscar. Another 23 wins & 92 nominations.")
     });
     
-    it('Expect to throw erro on movie not found', async () => {
+    it('Expect to throw error on movie not found', async () => {
         try{
             await OmdbapiService.getMovieDetails('Star Trek - bad title with typo')
             expect.fail(null, null, 'Movie data was found')
